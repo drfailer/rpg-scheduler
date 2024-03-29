@@ -1,7 +1,7 @@
 use diesel::{deserialize::Queryable, prelude::Insertable, Selectable};
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
-#[derive(Serialize, Queryable, Selectable, Insertable)]
+#[derive(Serialize, Deserialize, Queryable, Selectable, Insertable)]
 #[diesel(table_name = crate::schema::games)]
 pub struct Game {
     pub id: String,
@@ -12,7 +12,7 @@ pub struct Game {
     pub gm_discord_id: String
 }
 
-#[derive(Serialize, Queryable, Selectable, Insertable)]
+#[derive(Serialize, Deserialize, Queryable, Selectable, Insertable)]
 #[diesel(table_name = crate::schema::characters)]
 pub struct Character {
     pub id: String,

@@ -1,5 +1,5 @@
 use crate::models::Game;
-use diesel::{QueryDsl, RunQueryDsl, SqliteConnection};
+use diesel::{ExpressionMethods, QueryDsl, RunQueryDsl, SqliteConnection};
 
 pub fn insert_game(conn: &mut SqliteConnection, game_name: String) -> diesel::QueryResult<Game> {
     use crate::schema::games::dsl::*;
@@ -26,4 +26,10 @@ pub fn insert_game(conn: &mut SqliteConnection, game_name: String) -> diesel::Qu
 pub fn get_game(conn: &mut SqliteConnection, game_id: String) -> diesel::QueryResult<Game> {
     use crate::schema::games::dsl::*;
     games.find(game_id).first(conn)
+}
+
+pub fn delete_game(conn: &mut SqliteConnection, game_id: String) -> diesel::QueryResult<usize> {
+    use crate::schema::games::dsl::*;
+    let delete_row = diesel::delete(games.filter(id.eq(game_id))).execute(conn)?;
+    Ok(delete_row)
 }

@@ -21,6 +21,7 @@ async fn main() -> io::Result<()> {
             .service(scheduler::test_get)
             .service(scheduler::test_get_game)
             .service(scheduler::test_post)
+            .service(scheduler::test_delete)
     })
     .bind(("127.0.0.1", 8080))?
     .run()
