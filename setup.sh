@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
-# make sure to install diesel_cli
-# cargo install diesel_cli
+# make sure to install diesel_cli:
+# cargo install diesel_cli --no-default-features --features sqlite
 
-/home/drfailer/.local/share/cargo/bin/diesel setup
-/home/drfailer/.local/share/cargo/bin/diesel migration generate --diff-schema create_games
-/home/drfailer/.local/share/cargo/bin/diesel migration run
+
+$HOME/.local/share/cargo/bin/diesel setup
+$HOME/.local/share/cargo/bin/diesel migration generate --diff-schema create_games
+$HOME/.local/share/cargo/bin/diesel migration run
